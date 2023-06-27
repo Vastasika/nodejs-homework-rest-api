@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
         const { originalname } = file;
         const filename = `${uniquePreffix}_${originalname}`;
         cb(null, filename);
-    }
+    },
 });
 
 const upload = multer({
