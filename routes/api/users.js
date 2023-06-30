@@ -1,6 +1,6 @@
 const express = require('express');
 
-const {register,login,getCurrent,logout, updateAvatar} = require("../../controllers/users");
+const {register,login,getCurrent,logout, updateAvatar, verify, resendVerify} = require("../../controllers/users");
 
 const schemas = require("../../schemas/user");
 
@@ -11,7 +11,11 @@ const router = express.Router();
 
 router.post('/register', upload.single("avatar"), validateBody(schemas.userRegisterSchema), register);
 
-router.post('/login', validateBody(schemas.userLoginShema), login);
+router.get('/verify/:verificationToken', verify);
+
+router.post('/verify',validateBody(schemas.userEmailSchema),resendVerify);
+
+router.post('/login', validateBody(schemas.userLoginSchema), login);
 
 router.get("/current", authenticate, getCurrent);
 
