@@ -6,13 +6,18 @@ const userRegisterSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
 })
 
-const userLoginShema = Joi.object({
+const userLoginSchema = Joi.object({
   password: Joi.string().min(6).required(),
   email: Joi.string().pattern(emailRegexp).required(),
   token: Joi.string(),
 })
 
+const userEmailSchema = Joi.object({
+  email: Joi.string().pattern(emailRegexp).required()
+})
+
 module.exports = {
   userRegisterSchema,
-  userLoginShema
+  userLoginSchema,
+  userEmailSchema,
 }
